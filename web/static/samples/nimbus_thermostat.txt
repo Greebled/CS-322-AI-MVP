@@ -1,0 +1,31 @@
+Nimbus Smart Thermostat (Model N2) User Guide
+
+What's in the box
+The box contains the Nimbus N2 display unit, a wall plate, a trim plate for covering old paint marks, four wall screws with anchors, wire labels, and a quick-start card. A screwdriver is not included.
+
+Before you install
+Turn off power to your heating and cooling system at the breaker before removing your old thermostat. Take a photo of your old wiring so you can match each wire to the labeled terminals on the Nimbus wall plate. The Nimbus N2 works with most 24-volt systems, including gas furnaces, heat pumps, and central air conditioning. It does not work with high-voltage baseboard heaters (120 or 240 volts).
+
+Installation
+Attach the wall plate using the included screws and level it with the built-in bubble level. Insert each wire into the terminal with the matching letter (R, W, Y, G, C) until the button clicks. Snap the display onto the plate, then turn the power back on at the breaker. The screen lights up within 30 seconds.
+
+C-wire requirement
+A common wire (C wire) is strongly recommended because it supplies continuous power. Without a C wire, the Nimbus N2 runs on its internal battery and recharges from the heating circuit, which can cause the screen to dim or the Wi-Fi connection to drop. If you have no C wire, install the optional Nimbus Power Adapter, sold separately for $24.99.
+
+Connecting to Wi-Fi
+Download the Nimbus Home app for iOS or Android and tap Add Device. The thermostat only supports 2.4 GHz Wi-Fi networks; 5 GHz networks will not appear in the list. If connection fails, move your router closer or restart it, then hold the thermostat's center button for 5 seconds to restart setup.
+
+Schedules and Eco mode
+You can create up to four temperature periods per day in the app, such as Wake, Away, Home, and Sleep. Eco mode lowers heating to 62°F and raises cooling to 80°F whenever the motion sensor detects no one at home for 2 hours. Eco temperatures can be changed under Settings > Eco.
+
+Battery and display
+The internal rechargeable battery is not user-replaceable. If the screen shows a low battery warning for more than 24 hours, check the C wire connection or contact support. The display turns off after 20 seconds to save power and wakes when you walk within about 6 feet.
+
+Factory reset
+To erase all settings and schedules, press and hold the center button for 15 seconds until the screen shows "Reset," then release. The thermostat restarts in setup mode. Your account history in the Nimbus Home app is kept unless you also remove the device from the app.
+
+Troubleshooting
+If your system short-cycles (turns on and off every few minutes), open Settings > Equipment and increase the minimum run time to 5 minutes. If the temperature reading seems wrong, make sure the thermostat is not in direct sunlight or above a lamp or vent. Error code E4 means the thermostat cannot detect power on the R wire; turn off the breaker and reseat the R wire.
+
+Warranty and support
+The Nimbus N2 includes a 2-year limited warranty covering defects in materials and workmanship. The warranty does not cover damage from incorrect wiring or use with high-voltage systems. To start a claim, contact support@nimbushome.example with your order number, or call 1-800-555-0142, Monday to Friday, 8 a.m. to 6 p.m. Pacific Time. Returns are accepted within 30 days of purchase in original packaging.

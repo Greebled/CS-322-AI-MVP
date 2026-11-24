@@ -1,0 +1,32 @@
+# FAQ Builder: Flask web service + MongoDB
+# Start with:  docker compose up --build
+# Then open:   http://localhost:5001
+
+services:
+  db:
+    image: mongo:7.0
+    volumes:
+      - mongo_data:/data/db          # named volume: data survives `docker compose down`
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping')"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  web:
+    build: ./web
+    ports:
+      - "5001:5000"                  # host 5001 -> Flask 5000 (5000 is often taken on macOS)
+    environment:
+      - MONGO_URL=mongodb://db:27017/faqbuilder
+      # Values below come from a local .env file (never committed). See .env.example.
+      - AI_PROVIDER=${AI_PROVIDER:-auto}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
+      - CLAUDE_MODEL=${CLAUDE_MODEL:-claude-haiku-5-5}
+      - FLASK_DEBUG=${FLASK_DEBUG:-1}
+    depends_on:
+      db:
+        condition: service_healthy   # wait until Mongo actually answers, not just "started"
+
+volumes:
+  mongo_data:

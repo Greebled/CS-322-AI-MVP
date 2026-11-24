@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FAQ Builder</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,600&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div class="app">
+    <aside class="shelf">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">?</span>
+        <div>
+          <h1>FAQ Builder</h1>
+          <p>Answers drawn from your docs</p>
+        </div>
+      </div>
+
+      <button id="new-doc-btn" class="btn btn-primary btn-block" type="button">New document</button>
+
+      <nav aria-label="Documents">
+        <ul id="doc-list" class="doc-list">
+          <li class="doc-list-empty">Loading…</li>
+        </ul>
+      </nav>
+
+      <p id="provider-status" class="provider-status"></p>
+    </aside>
+
+    <main id="main" class="main">
+      <!-- Shown when there are no documents yet -->
+      <section id="empty-view" class="empty-view" hidden>
+        <h2>Turn a product manual into a searchable FAQ</h2>
+        <p>Paste a document, ask questions in plain English, and every answer is saved with the passages it came from.</p>
+        <div class="empty-actions">
+          <button id="empty-new-btn" class="btn btn-primary" type="button">Add a document</button>
+          <button id="sample-btn" class="btn btn-ghost" type="button">Try the sample thermostat manual</button>
+        </div>
+      </section>
+
+      <!-- Shown when a document is selected -->
+      <section id="doc-view" class="doc-view" hidden>
+        <header class="doc-header">
+          <div class="doc-heading">
+            <h2 id="doc-title"></h2>
+            <p id="doc-meta" class="doc-meta"></p>
+          </div>
+          <div class="doc-actions">
+            <button id="view-doc-btn" class="btn btn-ghost" type="button">Read text</button>
+            <button id="edit-doc-btn" class="btn btn-ghost" type="button">Edit</button>
+            <button id="delete-doc-btn" class="btn btn-ghost btn-danger" type="button">Delete</button>
+          </div>
+        </header>
+
+        <form id="ask-form" class="ask" novalidate>
+          <label for="ask-input" class="ask-label">Ask about this document</label>
+          <div class="ask-row">
+            <input id="ask-input" name="question" type="text" maxlength="300" autocomplete="off"
+                   placeholder="e.g. How do I reset it to factory settings?">
+            <button id="ask-btn" class="btn btn-primary" type="submit">Ask</button>
+          </div>
+          <p id="ask-error" class="field-error" role="alert"></p>
+          <p class="hint">Press <kbd>/</kbd> to jump here. Repeated questions reuse the saved answer.</p>
+        </form>
+
+        <div id="answer-slot" class="answer-slot" aria-live="polite"></div>
+
+        <section class="faq-section" aria-labelledby="faq-heading">
+          <div class="faq-head">
+            <h3 id="faq-heading">Saved answers <span id="faq-count" class="count"></span></h3>
+            <input id="faq-filter" type="search" placeholder="Filter questions" aria-label="Filter saved questions">
+          </div>
+          <ol id="faq-list" class="faq-list"></ol>
+          <p id="faq-empty" class="faq-empty" hidden></p>
+        </section>
+      </section>
+    </main>
+  </div>
+
+  <!-- Create / edit document -->
+  <dialog id="doc-dialog" class="dialog" aria-labelledby="doc-dialog-title">
+    <form id="doc-form" method="dialog" novalidate>
+      <h2 id="doc-dialog-title">New document</h2>
+      <div class="field">
+        <label for="doc-title-input">Title</label>
+        <input id="doc-title-input" name="title" type="text" maxlength="120" placeholder="Nimbus Smart Thermostat user guide">
+        <p class="field-error" data-error-for="title"></p>
+      </div>
+      <div class="field">
+        <div class="label-row">
+          <label for="doc-content-input">Document text</label>
+          <span id="content-counter" class="counter">0 / 50,000</span>
+        </div>
+        <textarea id="doc-content-input" name="content" rows="14"
+                  placeholder="Paste the manual, help article, or policy here. Blank lines between sections help answers stay focused."></textarea>
+        <p class="field-error" data-error-for="content"></p>
+      </div>
+      <p class="field-error" data-error-for="_form" role="alert"></p>
+      <div class="dialog-actions">
+        <button id="doc-cancel-btn" class="btn btn-ghost" type="button">Cancel</button>
+        <button id="doc-save-btn" class="btn btn-primary" type="submit">Save document</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Read full document text -->
+  <dialog id="text-dialog" class="dialog dialog-wide" aria-labelledby="text-dialog-title">
+    <h2 id="text-dialog-title"></h2>
+    <div id="text-dialog-body" class="doc-text"></div>
+    <div class="dialog-actions">
+      <button id="text-close-btn" class="btn btn-ghost" type="button">Close</button>
+    </div>
+  </dialog>
+
+  <div id="toasts" class="toasts" role="status" aria-live="polite"></div>
+
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
